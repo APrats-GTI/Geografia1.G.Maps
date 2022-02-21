@@ -14,8 +14,6 @@ if (isset($_POST['municipios']) && isset($_SESSION['comunidades']) && isset($_SE
     $municipio_id = $_POST['municipios'];
     $comunidad_id= $_SESSION['comunidades'];
     $provincia_id = $_SESSION['provincias'];
-
-    echo $municipio_id;
 }
 
 $mysqli = new mysqli('localhost', 'root', '', 'geografia2');
@@ -62,6 +60,9 @@ while ($rows = $res->fetch_all(MYSQLI_ASSOC)) {
                     <input type='hidden' id='latitud' value='$row[latitud]'>
                     <input type='hidden' id='longitud' value='$row[longitud]'> 
                 </div>";
+        print_r($row['latitud']);
+        echo("<br>");
+        print_r($row['longitud']);
     }
     // print_r($show);
 }

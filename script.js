@@ -1,7 +1,9 @@
-let latitud = document.getElementById("latitud").value;
-let longitud = document.getElementById("longitud").value;
+// let latitud = document.getElementById("latitud").value;
+// let longitud = document.getElementById("longitud").value;
 
-document.write(latitud);
+// let latlong = 'latitud,longitud'.split(",");
+// let latitude = parseFloat(latlong[0]);
+// let longitude = parseFloat(latlong[1]);
 
 
 // function iniciarMap(){
@@ -17,8 +19,8 @@ document.write(latitud);
 // }
 
 function iniciarMap(){
-  // var coord = {lat:-34.5956145 ,lng: -58.4431949};
-  var coord = {lat:parseInt(latitud) ,lng: parseInt(longitud)};
+  var coord = {lat:-34.5956145 ,lng: -58.4431949};
+  // var coord = {lat: 38.908967, lng:1.4246295};
   var map = new google.maps.Map(document.getElementById('map'),{
     zoom: 10,
     center: coord
