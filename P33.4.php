@@ -20,22 +20,18 @@ $mysqli = new mysqli('localhost', 'root', '', 'geografia2');
 
 if ($mysqli->connect_errno){
 
-    echo "<script>
-            console.log('Error connecting to server, $mysqli->connect_errno: $mysqli->connect_error');
-        </script>";
+    echo "<script> console.log('Error connecting to server, $mysqli->connect_errno: $mysqli->connect_error'); </script>";
 
     die(); //Finalitza l'script == Exit
   
 }
 
-echo "<script>
-            console.log('Succesfully connected to the server');
-    </script>";
+echo "<script> console.log('Succesfully connected to the server'); </script>";
 
 
 if (!$mysqli->set_charset("utf8")) { //Comprovar si la connexió es troba en utf-8 (Per a no liarla)
 
-    printf("Error loading character set utf8: %s\n", $mysqli->error);
+    echo "<script> console.log('Error loading character set utf8: %s\n', $mysqli->error); </script>";
 
     exit;
 
@@ -60,16 +56,14 @@ while ($rows = $res->fetch_all(MYSQLI_ASSOC)) {
                     <input type='hidden' id='latitud' value='$row[latitud]'>
                     <input type='hidden' id='longitud' value='$row[longitud]'> 
                 </div>";
-        print_r($row['latitud']);
-        echo("<br>");
-        print_r($row['longitud']);
+        // print_r($row['latitud']);
+        // echo("<br>");
+        // print_r($row['longitud']);
     }
     // print_r($show);
 }
 
-echo "<script>
-        console.log('All queries OK!');
-    </script>";
+echo "<script> console.log('All queries OK!'); </script>";
 
 $mysqli->close();
 
@@ -140,15 +134,6 @@ $mysqli->close();
             margin: 3%;
         }
 
-        button {
-            margin: 3%;
-            padding: 2%;
-            background-color: #F27405;
-            font-size: large;
-            color: #F2F2F2;
-            border-radius: 5px;
-            font-size: large;
-        }
         .map-container {
             padding: 2%;
         }
@@ -159,6 +144,40 @@ $mysqli->close();
             border-radius: 5px;
         }
 
+        .button1 {
+            border-radius: 5px;
+            background-color: #F27405;
+            color: #F2F2F2;
+            padding: 1%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: large;
+            margin: 3%;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .button2 {
+            border-radius: 5px;
+            background-color: #D92929;
+            color: #F2F2F2;
+            padding: 1%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: large;
+            margin: 3%;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .buttonH:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+
 
     </style>
     <title>Geography</title>
@@ -166,26 +185,33 @@ $mysqli->close();
 <body>
     <div class="container">
         <div class="items">
-        <header>
-                <h1>Summary</h1>
-        </header>
-        <section>
+            <header>
+                    <h1>Summary</h1>
+            </header>
+            <section>
 
-            <hr>
+                <hr>
 
-            <div class="result-item">
-                <?php
-                    echo $show;
-                ?>
+                <div class="result-item">
+                    <?php
+                        echo $show;
+                    ?>
+                </div>
+                <div class="buttons">
+                    <button onclick="window.location='P33.php';" class="button1 buttonH"value="click here">Start again</button>
+                    <button onclick="history.back()" class="button2 buttonH">Go back</button>
+                </div>
+            </section>
+            <div class="map-Container">
+                <div id="map"></div>
             </div>
-        </section>
-        <div class="map-Container">
-            <div id="map"></div>
-        </div>
         </div>
         
         <script src="script.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap&libraries=&v=weekly"
+            async
+        ></script>
     </div>
 </body>
 </html>
